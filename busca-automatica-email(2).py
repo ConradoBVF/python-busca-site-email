@@ -123,7 +123,7 @@ def enviar_email(site, destinatario):
             '\n'
             'Sou programador em Python e estou buscando uma vaga no mercado.\n'
             f'Encontrei o site {site} através de uma busca automática realizada pelo meu próprio bot.\n',
-            'Segue link no Github caso queira conhecer melhor: \n'
+            'Segue link no Github caso queira conhecer melhor: https://github.com/ConradoBVF/python-busca-site-email\n'
             'Também tomei a liberdade de anexar meu currículo neste e-mail para sua visualização.\n'
             'Fico à disposição para quaisquer oportunidades.\n'
             '\n'
@@ -141,13 +141,12 @@ def enviar_email(site, destinatario):
 # lista_site_emails = criar_lista(urls)
 # print(lista_site_emails)
 # transformar_xlsx(lista_site_emails)
-# enviar_email('www.blablabla.com.br', 'conrado@grupohidrica.com.br')
 lista = 'lista-final-emails.xlsx'
 df = pd.read_excel(lista)
 
 for index, row in df.iterrows():
     try:
         site, email = abrir_lista(row[0], row[1])
-        print(site, email)
+        enviar_email(site, email)
     except:
         pass
