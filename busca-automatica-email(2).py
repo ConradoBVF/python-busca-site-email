@@ -112,7 +112,7 @@ def abrir_lista(coluna1, coluna2):
 
 def enviar_email(site, destinatario):
     try:
-        usuario = yagmail.SMTP(user='geral.prospector@gmail.com', password='******************')
+        usuario = yagmail.SMTP(user='geral.prospector@gmail.com', password='**************************')
         anexo = './CV_Conrado_Ferreira.pdf'
         if datetime.now().hour >= 12:
             cumprimento = 'Boa tarde'
@@ -122,8 +122,13 @@ def enviar_email(site, destinatario):
             f'{cumprimento}, tudo bem?',
             '\n'
             'Sou programador em Python e estou buscando uma vaga no mercado.\n'
-            f'Encontrei o site {site} através de uma busca automática realizada pelo meu próprio bot.\n',
-            'Segue link no Github caso queira conhecer melhor: https://github.com/ConradoBVF/python-busca-site-email\n'
+            f'Encontrei o site {site} através de uma busca automática realizada pelo meu próprio bot, que realiza nessa ordem as seguintes funções:\n'
+            '- Solicita entrada de um termo de pesquisa\n'
+            '- Percorre as primeiras 11 páginas do Google coletando os principais sites\n'
+            '- Entra em cada um dos sites e realiza uma busca por Regex de email de contato\n'
+            '- Armazena os dados em uma planilha\n'
+            '- Envia este email para todos os dados encontrados\n'
+            'Segue link do automatismo no Github caso queira conhecer melhor: https://github.com/ConradoBVF/python-busca-site-email\n'
             'Também tomei a liberdade de anexar meu currículo neste e-mail para sua visualização.\n'
             'Fico à disposição para quaisquer oportunidades.\n'
             '\n'
@@ -135,12 +140,11 @@ def enviar_email(site, destinatario):
     except KeyError:
         print(KeyError)
 
-# atividade = input('Digite o termo de busca: ')
-# regiao = input('Digite a região: ')
-# urls = busca_sites(atividade, regiao)
-# lista_site_emails = criar_lista(urls)
-# print(lista_site_emails)
-# transformar_xlsx(lista_site_emails)
+atividade = input('Digite o termo de busca: ')
+regiao = input('Digite a região: ')
+urls = busca_sites(atividade, regiao)
+lista_site_emails = criar_lista(urls)
+transformar_xlsx(lista_site_emails)
 lista = 'lista-final-emails.xlsx'
 df = pd.read_excel(lista)
 
